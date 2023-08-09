@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Set default font family */
+*{
+  font-family: 'Raleway', 'Helvetica', 'Arial', sans-serif;
+}
+
+/* Hide the default checkbox */
+.dash-checklist input[type="checkbox"] {
+  display: none;
+}
+
+/* Style the label */
+.dash-checklist label {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+/* Create a custom checkbox */
+.dash-checklist label::before {
+  content: '';
+  display: inline-block;
+  width: 8px; 
+  height: 8px; 
+  border: 1px solid #0053b5;
+  border-radius: 50%; 
+  margin-right: 5px;
+  vertical-align: middle;
+  background-color: #0053b5; 
+}
+
+/* Style the custom checkbox when checked */
+.dash-checklist input[type="checkbox"]:checked + label::before {
+  background-color: #000000;
+}
+
+/* Spinner styling */
+.dash-spinner {
+  margin: 1rem auto;
+  width: 150px;
+  height: 150px;
+  background-image: url("bubbles.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.dash-spinner * {
+  display: none !important;
+}
+
+/* Card link styling */
+.card-link+.card-link {
+  margin-left: 0;
+}
+
+/* Table styling */
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner table {
+  font-family: sans-serif;
+  font-size: .75rem;
+}
+
+/* Accordion styling */
+.accordion-button {
+  background-color: unset;
+  padding: .75em 1em;
+}
+
+.accordion-item {
+  border: 1px solid #0053b5;
+}
+
+.accordion-body {
+  background-color:#eeeeee;
+}
+
+.accordion-button:focus {
+  border-color: unset;
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color:#0053b5;
+  box-shadow: None;
+  color: white;
+}
+
+/* Form styling */
+.form-control {
+  font-size: .75rem;
+}
+
+.form-control:disabled, .form-control[readonly] {
+  background-color: white;
+}
+
+
+.accordion-flush .accordion-item:first-child {
+  border-top: 1px solid #0053b5;
+}
+
+.accordion-flush .accordion-item:last-child {
+  margin-bottom: 2em;
+}
+
+.btn-check:active+.btn-secondary:focus, .btn-check:checked+.btn-secondary:focus, .btn-secondary.active:focus, .btn-secondary:active:focus, .show>.btn-secondary.dropdown-toggle:focus {
+  box-shadow: None;
+}
+
+.btn-check:focus+.btn-secondary, .btn-secondary:focus{
+  box-shadow: None;
+}
+
+.form-control:focus {
+  border-color: unset;
+  box-shadow: none;
+}
+
+/* Custom tab styling */
+.custom-tab-1 {
+  background: url("icons/1-square-fill.svg"), url("icons/file-earmark-arrow-up.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: -20%, 20%;
+  background-size: 35% 35%;
+}
+
+.custom-tab-2 {
+  background: url("icons/2-square-fill.svg"), url("icons/table.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: -20%, 15%;
+  background-size: 35% 35%;
+}
+
+.custom-tab-2--disabled {
+  background: url("icons/2-square-fill-disabled.svg"), url("icons/table-disabled.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: -20%, 15%;
+  background-size: 35% 35%;
+}
+
+.custom-tab-3 {
+  background:url("icons/3-square-fill.svg"), url("icons/calculator.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: -20%, 15%;
+  background-size: 35% 35%;
+}
+
+.custom-tab-3--disabled {
+  background: url("icons/3-square-fill-disabled.svg"), url("icons/calculator-disabled.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: -20%, 15%;
+  background-size: 35% 35%;
+}
+
+.custom-tab-4 {
+  background:url("icons/4-square-fill.svg"), url("icons/file-bar-graph.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: -20%, 10%;
+  background-size: 35% 35%;
+}
+
+.custom-tab-4--disabled {
+  background: url("icons/4-square-fill-disabled.svg"), url("icons/file-bar-graph-disabled.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: -20%, 10%;
+  background-size: 35% 35%;
+}
+
+/* Footer styling */
+.footer-link:hover {
+  color: #0053b5 !important;
+  text-decoration: underline !important;
+}
+
+/* Media queries for responsive design */
+@media only screen and (max-width: 1600px) {
+  .custom-tab-1 {background-position: -20%, 15%;}
+  .custom-tab-2 {background-position: -20%, 10%;}
+  .custom-tab-2--disabled {background-position: -20%, 10%;}
+  .custom-tab-3 {background-position: -20%, 10%;}
+  .custom-tab-3--disabled {background-position: -20%, 10%;}
+  .custom-tab-4 {background-position: -20%, 5%;}
+  .custom-tab-4--disabled {background-position: -20%, 5%;}
+}
+
+@media only screen and (max-width: 1330px) {
+  .custom-tab-1 {background-position: -20%, 10%;}
+  .custom-tab-2 {background-position: -20%, 5%;}
+  .custom-tab-2--disabled {background-position: -20%, 5%;}
+  .custom-tab-3 {background-position: -20%, 5%;}
+  .custom-tab-3--disabled {background-position: -20%, 5%;}
+  .custom-tab-4 {background-position: -20%, 0%;}
+  .custom-tab-4--disabled {background-position: -20%, 0%;}
+}
+
+@media only screen and (max-width: 1130px) {
+  .custom-tab-1 {background-position: -20%, 5%;}
+  .custom-tab-2 {background-position: -20%, 0%;}
+  .custom-tab-2--disabled {background-position: -20%, 0%;}
+  .custom-tab-3 {background-position: -20%, 0%;}
+  .custom-tab-3--disabled {background-position: -20%, 0%;}
+  .custom-tab-4 {background-position: -20%, -7%;}
+  .custom-tab-4--disabled {background-position: -20%, -7%;}
+}

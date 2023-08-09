@@ -1,0 +1,28 @@
+GPCho(36:0)
+GPSer(42:2)
+GPIns(34:1)
+GPIns(36:0)
+GPIns(38:6)
+GPIns(40:5)
+GPGro(32:1)
+GPGro(36:1)
+GPGro(38:1)
+GPGro(40:2)
+CL (66:5)
+CL (66:4)
+CL (66:3)
+CL (68:5)
+CL (68:4)
+CL (68:2)
+CL (70:6)
+CL (70:5)
+CL (70:4)
+CL (72:7)
+CL (72:6)
+CL (72:5)
+CL (72:4)
+CoQ-9
+CoQ-10
+DOL-18
+DOL-19
+DOL-20

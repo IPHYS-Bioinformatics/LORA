@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 248.3 251.5" style="enable-background:new 0 0 248.3 251.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:#82C341;}
+	.st2{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+	.st3{fill:#131347;}
+	.st4{fill:#EEE817;stroke:#231F20;stroke-miterlimit:10;}
+	.st5{fill:#A5AA37;stroke:#231F20;stroke-miterlimit:10;}
+</style>
+<path class="st0" d="M67.8-76.7"/>
+<path class="st0" d="M17.6,238.4V78.3c0-38.5,26.1-70,58.1-70s58.1,0,58.1,0"/>
+<path class="st1" d="M75.7,8.3c-32,0-58.1,31.5-58.1,70v160.1c0,0,26.1,0,58.1,0s58.1-31.5,58.1-70V8.3
+	C133.8,8.3,107.7,8.3,75.7,8.3z"/>
+<path class="st0" d="M133.8,8.3v160.1c0,38.5-26.1,70-58.1,70s-58.1,0-58.1,0"/>
+<circle class="st2" cx="74.7" cy="74.9" r="32.1"/>
+<g>
+<circle class="st3" cx="74.7" cy="73.6" r="14.1"/>
+     <animate 
+                    id="anim" 
+                    attributeType="xml"
+                    attributeName="fill-opacity" 
+                    begin="0s" 
+                    values="1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;" 
+                    dur="10s"
+                    repeatCount="indefinite" 
+                  />
+</g>
+
+
+<path class="st4" d="M133.4,8.3l1,101.4h100.4C234.8,53.7,189.4,8.3,133.4,8.3z"/>
+<path class="st5" d="M205,109.7l-71.2,0.6v64.9C173.2,175.3,205,145.9,205,109.7z"/>
+<path class="st0" d="M42.6,204.1c31.8,0,57.6-25.8,57.6-57.6"/>
+</svg>

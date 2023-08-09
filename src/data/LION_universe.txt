@@ -1,0 +1,229 @@
+GPA(30:1)
+GPA(36:2)
+GPA(38:5)
+GPCho(32:2)
+GPCho(32:1)
+GPCho(34:3)
+GPCho(34:2)
+GPCho(34:1)
+GPCho(36:3)
+GPCho(36:2)
+GPCho(36:1)
+GPCho(38:6)
+GPCho(40:7)
+GPCho(40:6)
+GPCho(40:4)
+GPSer(36:0)
+GPSer(42:4)
+GPSer(42:3)
+GPIns(36:5)
+GPIns(36:4)
+GPIns(36:3)
+GPIns(40:3)
+GPCho(O-36:4)
+GPCho(O-36:2)
+GPEtn(O-32:0)
+GPEtn(O-38:3)
+Ceramide C26:1
+DHCeramide C26:1
+DHHexosylceramide C24:1
+DHHexosylceramide C26
+Sphingomyelin C20
+DHSphingomyelin C22
+DHSphingomyelin C26
+22R-hydroxy-cholesterol
+7-oxo-cholesterol
+GPA(30:0)
+GPCho(34:0)
+GPCho(O-36:3)
+GPCho(O-38:5)
+GPEtn(O-36:1)
+GPEtn(O-38:1)
+Lanosterol
+GPA(32:4)
+GPA(34:2)
+GPCho(38:5)
+GPCho(40:2)
+GPIns(40:6)
+Ceramide C16 
+Ceramide C18
+Ceramide C20
+Ceramide C22
+Ceramide C24:1
+Ceramide C24
+Ceramide C26
+DHCeramide C16 
+DHCeramide C18
+DHCeramide C20
+DHCeramide C22
+DHCeramide C24:1
+DHCeramide C24
+DHCeramide C26
+DHHexosylceramide C20
+DHHexosylceramide C26:1
+DHSphingomyelin C20
+DHSphingomyelin C26:1
+4b-hydroxy-cholesterol
+6a-hydroxy-cholestanol
+7a-hydroxy-cholesterol
+GPA(32:1)
+GPA(32:0)
+GPA(34:0)
+GPA(36:3)
+GPA(36:0)
+GPA(38:4)
+GPA(38:3)
+GPA(38:2)
+GPA(38:1)
+GPA(40:3)
+GPSer(34:2)
+GPSer(36:4)
+GPSer(40:0)
+GPSer(42:1)
+GPSer(42:0)
+GPIns(34:2)
+GPIns(38:1)
+GPGro(40:8)
+Cholesterol
+Desmosterol
+24-25-epoxy-cholesterol
+25-hydroxy-cholesterol
+Cholestenone
+GPA(34:1)
+GPA(36:1)
+GPCho(28:0)
+GPCho(32:0)
+GPCho(38:1)
+GPIns(36:1)
+GPGro(32:0)
+GPGro(34:1)
+GPGro(34:0)
+GPCho(P-36:4)
+GPA(40:6)
+GPA(40:1)
+GPA(40:0)
+GPSer(34:1)
+GPSer(34:0)
+GPSer(36:2)
+GPSer(36:1)
+GPSer(38:4)
+GPSer(38:3)
+GPSer(38:2)
+GPSer(38:1)
+GPSer(40:6)
+GPSer(40:5)
+GPSer(40:4)
+GPSer(40:3)
+GPSer(40:2)
+GPSer(40:1)
+GPGro(34:3)
+GPGro(36:4)
+GPEtn(O-38:2)
+GPA(40:4)
+GPCho(36:4)
+GPCho(38:4)
+GPCho(38:2)
+GPCho(38:0)
+GPCho(40:1)
+GPCho(42:2)
+GPCho(42:1)
+GPEtn(32:0)
+GPEtn(34:1)
+GPEtn(34:0)
+GPEtn(36:1)
+GPEtn(36:0)
+GPEtn(38:6)
+GPEtn(38:5)
+GPEtn(38:4)
+GPEtn(38:3)
+GPEtn(38:2)
+GPEtn(38:1)
+GPEtn(38:0)
+GPEtn(40:6)
+GPEtn(40:5)
+GPEtn(40:4)
+GPSer(38:5)
+GPIns(36:2)
+GPIns(38:5)
+GPIns(38:4)
+GPIns(38:3)
+GPIns(38:2)
+GPIns(40:7)
+GPIns(40:4)
+GPGro(34:2)
+GPGro(36:3)
+GPGro(36:2)
+GPGro(38:5)
+GPGro(38:4)
+GPGro(38:3)
+GPGro(38:2)
+GPGro(40:7)
+GPGro(40:6)
+GPGro(40:5)
+GPGro(40:4)
+GPGro(40:3)
+CL (68:3)
+CL (70:3)
+GPCho(36:0)
+GPSer(42:2)
+GPIns(34:1)
+GPIns(36:0)
+GPIns(38:6)
+GPIns(40:5)
+GPGro(32:1)
+GPGro(36:1)
+GPGro(38:1)
+GPGro(40:2)
+CL (66:5)
+CL (66:4)
+CL (66:3)
+CL (68:5)
+CL (68:4)
+CL (68:2)
+CL (70:6)
+CL (70:5)
+CL (70:4)
+CL (72:7)
+CL (72:6)
+CL (72:5)
+CL (72:4)
+CoQ-9
+CoQ-10
+DOL-18
+DOL-19
+DOL-20
+GPEtn(34:2)
+GPEtn(36:4)
+GPEtn(36:3)
+GPEtn(36:2)
+GPEtn(O-36:5)
+GPEtn(O-36:4)
+GPEtn(O-36:3)
+GPEtn(O-36:2)
+GPEtn(O-38:5)
+CL (66:2)
+Hexosylceramide C16 
+Hexosylceramide C18
+Hexosylceramide C20
+Hexosylceramide C22
+Hexosylceramide C24:1
+Hexosylceramide C24
+Hexosylceramide C26:1
+Hexosylceramide C26
+DHHexosylceramide C16 
+DHHexosylceramide C18
+DHHexosylceramide C22
+DHHexosylceramide C24
+Sphingomyelin C16 
+Sphingomyelin C18
+Sphingomyelin C22
+Sphingomyelin C24:1
+Sphingomyelin C24
+Sphingomyelin C26:1
+Sphingomyelin C26
+DHSphingomyelin C16 
+DHSphingomyelin C18
+DHSphingomyelin C24:1
+DHSphingomyelin C24
+7-dehydro-cholesterol
+27-hydroxy-cholesterol

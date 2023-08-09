@@ -1,0 +1,54 @@
+target_id;target_text
+normalized_name;The Goslin normalized lipid name.
+original_name;The original lipid name.
+grammar;The selected grammar used for parsing the lipid name.
+message;Message.
+adduct;Adduct.
+sum_formula;Calculated sum formula.
+mass;Calculated mass.
+lipid_maps_category;Category within Lipid Maps hierarchy.
+lipid_maps_main_class;Class within Lipid Maps hierarchy.
+functional_class_abbr;Abbreviation.
+functional_class_synonyms;Synonyms.
+level;The structural level of the lipid.
+total_#c;The total number of carbons of all FA chains.
+total_#db;The total number of double bonds of all FA chains.
+total_#o;The total number of O.
+total_#oh;The total number of OH.
+total_#me;The total number of Me.
+total_#acyl;The total number of Acyl.
+total_#oxo;The total number of oxo.
+total_#cy;The total number of cy.
+lcb_sn_position;The SN position of the long-chain/sphingoid bases.
+lcb_#c;The number of carbons within the long-chain/sphingoid bases.
+lcb_#db;The number of double bonds within the long-chain/sphingoid bases.
+lcb_bond_type;The type of link between head group and long-chain/sphingoid bases.
+lcb_db_positions;The double bond position within the long-chain/sphingoid bases.
+fa1_sn_position;The SN position of the FA1 chain.
+fa1_#c;The number of carbons within the FA1 chain.
+fa1_#db;The number of double bonds within the FA1 chain.
+fa1_bond_type;The type of link between head group and FA1 chain.
+fa1_db_positions;The double bond position within the FA1 chain.
+fa2_sn_position;The SN position of the FA2 chain.
+fa2_#c;The number of carbons within the FA2 chain.
+fa2_#db;The number of double bonds within the FA2 chain.
+fa2_bond_type;The type of link between head group and FA2 chain.
+fa2_db_positions;The double bond position within the FA2 chain.
+fa3_sn_position;The SN position of the FA3 chain.
+fa3_#c;The number of carbons within the FA3 chain.
+fa3_#db;The number of double bonds within the FA3 chain.
+fa3_bond_type;The type of link between head group and FA3 chain.
+fa3_db_positions;The double bond position within the FA3 chain.
+fa4_sn_position;The SN position of the FA4 chain.
+fa4_#c;The number of carbons within the FA4 chain.
+fa4_#db;The number of double bonds within the FA4 chain.
+fa4_bond_type;The type of link between head group and FA4 chain.
+fa4_db_positions;The double bond position within the FA4 chain.
+fa1_db_position_numbers;The double bond position numbers within the FA1 chain.
+fa1_db_position_geometries;The double bond position geometries within the FA1 chain.
+fa2_db_position_numbers;The double bond position numbers within the FA2 chain.
+fa2_db_position_geometries;The double bond position geometries within the FA2 chain.
+fa3_db_position_numbers;The double bond position numbers within the FA3 chain.
+fa3_db_position_geometries;The double bond position geometries within the FA3 chain.
+fa4_db_position_numbers;The double bond position numbers within the FA4 chain.
+fa4_db_position_geometries;The double bond position geometries within the FA4 chain.
