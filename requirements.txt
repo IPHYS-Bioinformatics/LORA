@@ -39,7 +39,7 @@ jsonschema==4.17.3
 jupyter_client==7.4.7
 jupyter_core==5.1.0
 jupyterlab-pygments==0.2.2
-kaleido==0.1.0.post1
+kaleido
 kiwisolver==1.4.4
 lxml==4.9.2
 MarkupSafe==2.1.1
