@@ -11,6 +11,8 @@ LORA is the **L**ipid **O**ver-**R**epresentation **A**nalysis tool based on GOS
 
 ## Installation
 
+### Linux
+
     $ git clone https://github.com/IPHYS-Bioinformatics/LORA.git
     $ cd LORA
 
@@ -25,7 +27,6 @@ Enter the virtual environment:
 Install LORA dependencies:
     
     $ pip install -r requirements-linux.txt
-    $ pip install -r requirements.txt (for Windows)
 
 Change into the main source directory to run LORA:
 
@@ -33,6 +34,31 @@ Change into the main source directory to run LORA:
     $ python index.py
     
 and visit https://localhost:8050
+
+
+### Windows
+
+    git clone https://github.com/IPHYS-Bioinformatics/LORA.git
+    cd LORA
+
+Set up a Python virtual environment to isolate dependencies:
+
+    python -m venv LORA-venv
+
+Enter the virtual environment:
+
+    LORA-venv\Scripts\activate
+
+Install LORA dependencies:
+    
+    pip install -r requirements.txt
+
+Change into the main source directory to run LORA:
+
+    cd src
+    python index.py
+    
+and visit [https://localhost:8050](http://127.0.0.1:8050)
 
 ## Test data
 
