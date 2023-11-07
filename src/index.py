@@ -2,7 +2,7 @@ import json
 import base64
 import io, uuid
 from os.path import basename
-from datetime import datetime   
+from datetime import datetime, timedelta
 
 from flask_caching import Cache
 import uuid
@@ -39,11 +39,22 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, "https://c
 server = app.server
 app.config.suppress_callback_exceptions = True
 
-server.config['SECRET_KEY'] = secrets.token_hex(32)
-server.config['SESSION_TYPE'] = 'filesystem'
-server.config['PERMANENT_SESSION_LIFETIME'] = 600
-Session(server)
+server.config.update(
+    SESSION_COOKIE_SECURE=True,  # Controls if the cookie should be set with the secure flag
+    SESSION_COOKIE_HTTPONLY=True,  # Controls if the cookie should be set with the httponly flag
+    SESSION_COOKIE_SAMESITE='Lax',  # Restrict how cookies are sent with requests from external sites. Can be set to 'Lax' (recommended) or 'Strict'.
 
+    SECRET_KEY=secrets.token_hex(32),
+    SESSION_TYPE='filesystem',
+    PERMANENT_SESSION_LIFETIME=timedelta(seconds=600),  # Session expire after 10 mins
+
+    SESSION_FILE_THRESHOLD=100,  # The maximum number of items the session stores before it starts deleting some.
+    SESSION_FILE_MODE=0o600,  # The file mode wanted for the session files
+    # Doplnění další bezpečnostní hlavičky může být rovněž užitečné
+    # Příklad: nastavení Content Security Policy (CSP), HSTS atd.
+)
+
+Session(server)
 
 config={
     'CACHE_TYPE': 'filesystem',
@@ -656,14 +667,37 @@ app_layout = html.Div([
                                        'border-radius':'5px',
                                        'background-color':'#ffffff'}
                             ),
+                            dbc.CardBody(
+                                [
+                                    html.H4("Citing LORA", className="card-title", style={'background-color':'#82c341', 
+                                                                                            'padding':'12px',
+                                                                                            'margin':0, 
+                                                                                            'color':'#ffffff'}
+                                    ),
+
+                                    html.Div([
+                                        html.P(children=[
+                                            html.P('Vondráčková, M., Kopczynski, D., Hoffmann, N., & Kuda, O. (2023). LORA, Lipid Over-Representation Analysis Based on Structural Information. ', style={'display':'contents'}),
+                                            html.I('Analytical Chemistry, 95', style={'display':'contents'}),
+                                            html.P('(34), 12600–12604. ', style={'display':'contents'}),
+                                            html.A('https://doi.org/10.1021/acs.analchem.3c02039', href='https://doi.org/10.1021/acs.analchem.3c02039', style={'display':'contents'}),
+                                        ]),
+                                    ],
+                                    style={'padding':'12px'}),
+                                ],
+                                style={'margin-bottom':'1rem',
+                                       'padding':0, 
+                                       'border':'1px solid #82c341',
+                                       'border-radius':'5px',
+                                       'background-color':'#ffffff'}
+                            ),
                         ], style={'background-color':'#eeeeee', 'padding':'1rem'}),
 
                 ], style={'margin-bottom':'3rem', 'padding':'12px'})
             ]),
 
             ### jgoslin tables
-            dcc.Tab(label='Lipid Names Parsing', value='tab-2', className='custom-tab-2', selected_className='custom-tab-2--selected', disabled_className='custom-tab-2--disabled', id='tab-2', 
-                    children=[
+            dcc.Tab(label='Lipid Names Parsing', value='tab-2', className='custom-tab-2', selected_className='custom-tab-2--selected', disabled_className='custom-tab-2--disabled', id='tab-2', children=[
                 html.Br(),
                 html.H4('Lipid Nomenclature Parsing And Normalization'),
 
@@ -800,6 +834,7 @@ app_layout = html.Div([
 
                 )], id='div-process-button', style={'display':'flex', 'justify-content': 'center', 'align-items':'center'})
                 
+
             ], disabled=True),
 
             ### Enrichment Analysis
@@ -818,13 +853,15 @@ app_layout = html.Div([
                                     dcc.RadioItems([{'label':html.Div(['greater'], id='target-greater', style={'display':'inline-block'}), 'value':'greater'},
                                                     {'label':html.Div(['less'], id='target-less', style={'display':'inline-block'}), 'value':'less',},
                                                     {'label':html.Div(['two-sided'], id='target-two-sided', style={'display':'inline-block'}),'value':'two-sided'}
-                                                    ], 'greater', id='radioitems-alternative', inline = True, labelStyle={'display':'flex', "margin-right": "1rem"}, inputStyle={"margin-right": "5px"}
+                                                    ], 'greater', id='radioitems-alternative', 
+                                                    inline = True, labelStyle={'display': 'flex', 'flex-direction': 'row', "margin-right": "1rem"}, 
+                                                    inputStyle={"margin-right": "5px"},
                                                     ),
                                     
                                     dbc.Tooltip('The odds ratio of the underlying population is greater than one.', target='target-greater'),
                                     dbc.Tooltip('The odds ratio of the underlying population is less than one.', target='target-less'),
                                     dbc.Tooltip('The odds ratio of the underlying population is not one.', target='target-two-sided'),
-                                ], style={'margin':'5px 0 20px 0'}),
+                                ], style={'margin':'5px 0 20px 0', 'display': 'flex'}),
 
                                 html.Hr(style={'color':'#0053b5', 'height':'2px'}),
                                 
@@ -898,9 +935,8 @@ app_layout = html.Div([
                                 html.Hr(style={'color':'#0053b5', 'height':'2px'}),
 
                                 dcc.Checklist(options=[{'label': 'Show only statistically significant results', 'value':'Filter statistically significant results'}], 
-                                              value=['Filter statistically significant results'], id='filter-enrichment', inputStyle={"margin-right": "5px"}), # just for now to see what is happening
-
-
+                                              value=['Filter statistically significant results'], id='filter-enrichment', inputStyle={"margin-right": "5px"}),
+                                
                                 dbc.Button(id='enrichment-button', children="Process", style={'margin':'10px auto 10px auto', 'width':'auto'}, color="secondary", disabled=True),
 
                                 html.Div(id='output-select-message'),
@@ -1403,7 +1439,6 @@ def update_query_output_filename(demo_1, demo_2, demo_3, demo_4, contents, filen
 def update_query_and_universe_output(demo_button_1, demo_button_2, demo_button_3, demo_button_4, parser_dropdown, contents_query, contents_universe, filename_query, filename_universe):
     
     triggered_id = ctx.triggered_id
-    print(triggered_id)
 
     session_id = flask.session['session_id']
     clear_old_assets_and_cache(os.getcwd(), session_id)
@@ -2148,11 +2183,29 @@ def create_table_statistics(checklist, checklist_subset, data_query, data_univer
 
         LIM_MAX = df_get_sig['p-value'].max()
 
-        # Create upset plot and tables
+        # Create upset plot
         upset_df = table_for_upset(df_get_sig, df_query_final)
 
-        fig, fig_dict, VIL = create_upset_figure(upset_df, df, LIM_MAX)
-       
+        if len(df.index) < 2:
+            fig = go.Figure()
+            fig.add_annotation(
+                text="Not enough data to plot a figure, the condition needs to be loosen.",
+                font={"size": 16},
+                showarrow=False
+            )
+            fig_dict = {}
+            VIL = pd.DataFrame()
+
+        if len(df.index) >= 2 and len(df.index) < 13:
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
+
+        if len(df.index) >= 13:    
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
+        
         cache.set('upset_fig_'+session_id, fig)
 
         table = table_create_table_statistics(df)
@@ -2243,7 +2296,25 @@ def create_table_statistics(checklist, checklist_subset, data_query, data_univer
 
         upset_df = table_for_upset(df_get_sig, df_query_final)
 
-        fig, fig_dict, VIL = create_upset_figure(upset_df, df, LIM_MAX)
+        if len(df.index) < 2:
+            fig = go.Figure()
+            fig.add_annotation(
+                text="Not enough data to plot a figure, the condition needs to be loosen.",
+                font={"size": 16},
+                showarrow=False
+            )
+            fig_dict = {}
+            VIL = pd.DataFrame()
+        
+        if len(df.index) >= 2 and len(df.index) < 13:
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
+
+        if len(df.index) >= 13:    
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
 
         cache.set('upset_fig_'+session_id, fig)    
 
@@ -2351,7 +2422,25 @@ def create_table_statistics(checklist, checklist_subset, data_query, data_univer
 
         upset_df = table_for_upset(df_get_sig, df_query_final)
 
-        fig, fig_dict, VIL = create_upset_figure(upset_df, df, LIM_MAX)
+        if len(df.index) < 2:
+            fig = go.Figure()
+            fig.add_annotation(
+                text="Not enough data to plot a figure, the condition needs to be loosen.",
+                font={"size": 16},
+                showarrow=False
+            )
+            fig_dict = {}
+            VIL = pd.DataFrame()
+
+        if len(df.index) >= 2 and len(df.index) < 13:
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
+
+        if len(df.index) >= 13:    
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
 
         cache.set('upset_fig_'+session_id, fig)
 
@@ -2398,7 +2487,25 @@ def create_table_statistics(checklist, checklist_subset, data_query, data_univer
 
         upset_df = table_for_upset(df_get_sig, df_query_final)
 
-        fig, fig_dict, VIL = create_upset_figure(upset_df, df, LIM_MAX)
+        if len(df.index) < 2:
+            fig = go.Figure()
+            fig.add_annotation(
+                text="Not enough data to plot a figure, the condition needs to be loosen.",
+                font={"size": 16},
+                showarrow=False
+            )
+            fig_dict = {}
+            VIL = pd.DataFrame()
+
+        if len(df.index) >= 2 and len(df.index) < 13:
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
+
+        if len(df.index) >= 13:    
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
         
         cache.set('upset_fig_'+session_id, fig)
 
@@ -2492,7 +2599,25 @@ def create_table_statistics(checklist, checklist_subset, data_query, data_univer
 
         upset_df = table_for_upset(df_get_sig, df_query_final)
 
-        fig, fig_dict, VIL = create_upset_figure(upset_df, df, LIM_MAX)
+        if len(df.index) < 2:
+            fig = go.Figure()
+            fig.add_annotation(
+                text="Not enough data to plot a figure, the condition needs to be loosen.",
+                font={"size": 16},
+                showarrow=False
+            )
+            fig_dict = {}
+            VIL = pd.DataFrame()
+
+        if len(df.index) >= 2 and len(df.index) < 13:
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
+
+        if len(df.index) >= 13:    
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
         
         cache.set('upset_fig_'+session_id, fig)
 
@@ -2600,7 +2725,25 @@ def create_table_statistics(checklist, checklist_subset, data_query, data_univer
 
         upset_df = table_for_upset(df_get_sig, df_query_final)
 
-        fig, fig_dict, VIL = create_upset_figure(upset_df, df, LIM_MAX)
+        if len(df.index) < 2:
+            fig = go.Figure()
+            fig.add_annotation(
+                text="Not enough data to plot a figure, the condition needs to be loosen.",
+                font={"size": 16},
+                showarrow=False
+            )
+            fig_dict = {}
+            VIL = pd.DataFrame()
+
+        if len(df.index) >= 2 and len(df.index) < 13:
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
+
+        if len(df.index) >= 13:    
+            original_df, df_to_plot, subsets, fig_dict, VIL = plotly_upset_plot_pivot(upset_df, LIM_MAX)
+            fig = plotly_upset_figure(df_to_plot, original_df, subsets, LIM_MAX) 
+            fig.update_layout(clickmode='event+select')
         
         cache.set('upset_fig_'+session_id, fig)
 
@@ -2894,13 +3037,13 @@ def create_report(
         universe_data
         ):
     session_id = flask.session['session_id']
+    print("Starting report creation")
 
     triggered_id = ctx.triggered_id
 
     if triggered_id == 'enrichment-container':
 
         print("Enrichment container triggered")
-        print("Starting report creation")
         
         fig_interactions = cache.get('upset_fig_'+session_id)
         fig_tree = go.Figure(phylo_tree_figure)
@@ -2986,7 +3129,7 @@ def create_report(
         reporter_create_zip(session_id, report_path)
         print("Store zip in cache started")
         reporter_store_zip_in_cache('assets/'+session_id+'_LORA_report.zip', session_id, cache, report_path)
-        print("Report creation completed")
+        print("Report creation completed started")
     
     else:
         raise PreventUpdate
@@ -3003,17 +3146,27 @@ def create_report(
 def func(n_clicks):
     session_id = flask.session['session_id']
     report_path = cache.get('report_path'+session_id)
-
     def write_archive(bytes_io):
         print("write archive started")
+        print(session_id+"_report")
         output = cache.get(session_id+"_report")
         decoded = base64.b64decode(output)
         bytes_io.write(decoded)
         shutil.rmtree(report_path, ignore_errors=True, onerror=None)
         print("write archive finished")
-
+    
     LORA_report_file_name = 'LORA_report_' + str(datetime.now().strftime('%Y_%m_%d_%H_%M_%S')) + '.zip'
+
     return dcc.send_bytes(write_archive, LORA_report_file_name)
+
+
+@app.server.after_request
+def apply_sec_rules(response):
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    response.headers['Content-Security-Policy'] = "frame-ancestors 'none'"
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    return response
 
 
 if __name__ == '__main__':
