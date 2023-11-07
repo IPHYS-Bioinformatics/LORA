@@ -50,8 +50,6 @@ server.config.update(
 
     SESSION_FILE_THRESHOLD=100,  # The maximum number of items the session stores before it starts deleting some.
     SESSION_FILE_MODE=0o600,  # The file mode wanted for the session files
-    # Doplnění další bezpečnostní hlavičky může být rovněž užitečné
-    # Příklad: nastavení Content Security Policy (CSP), HSTS atd.
 )
 
 Session(server)
