@@ -2,7 +2,10 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 
 def get_header_version():
-    return '1.1 (10.7.2023)'
+    return '1.2 (14.3.2024)'
+
+def get_goslin_version():
+    return 'jgoslin-cli-2.2.0'
 
 ### Header
 header = html.Div([
@@ -13,7 +16,12 @@ header = html.Div([
                         href='/'
                 ),
                 html.H3('LORA: Lipid Over-Representation Analysis', style={'color':'white','padding':'0 1rem', 'margin':'0', 'display': 'inline-block'}),
-                html.H6('version ' + str(get_header_version()), style={'color':'white', 'display': 'inline-block', 'float':'right', 'margin':'1rem 1rem 0 0'}),
+                html.Div(children=[
+                        html.H6('version ' + str(get_header_version()), style={'display': 'block', 'margin':'0 0 0 0'}),
+                        html.H6(str(get_goslin_version()), style={'display': 'block'}),
+                ], style={'color':'white', 'display': 'inline-block', 'float':'right', 'margin':'.5rem 1rem 0 0'}),
+                # html.H6('version ' + str(get_header_version()), style={'color':'white', 'display': 'inline-block', 'float':'right', 'margin':'1rem 1rem 0 0'}),
+                # html.H6(str(get_goslin_version()), style={'color':'white', 'display': 'inline-block', 'float':'right', 'margin':'1rem 1rem 0 0'}),
                 html.Div([
                         dbc.Button(children=[
                                 html.Img(
