@@ -64,7 +64,6 @@ config={
 
 cache = Cache(app.server, config=config)
 
-
 @server.before_request
 def set_session_id():
     if 'session_id' not in flask.session:
@@ -79,6 +78,16 @@ app.index_string = '''<!DOCTYPE html>
     <meta name="author" content="Michaela Vondrackova">
   	<meta name="description" content="Metabolomics, lipidomics, Goslin, enrichment, lipid ontology, over-representation, standardization, LIPID MAPS" />
 	<meta name="keywords" content="lipidomics, lipid structure, nomenclature, Goslin, normalized lipid name, lipid identification, UpSet plot, lipid network, pathway">
+
+    <!-- Google tag (gtag.js) -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LQQRFEVR5E"></script>
+    <script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-LQQRFEVR5E');
+	</script>
 
     {%metas%}
     <title>{%title%}</title>
@@ -3035,7 +3044,8 @@ def create_report(
         universe_data
         ):
     session_id = flask.session['session_id']
-    print("Starting report creation")
+    
+    print(f"Starting report creation for session {session_id}")
 
     triggered_id = ctx.triggered_id
 
@@ -3156,7 +3166,6 @@ def func(n_clicks):
     LORA_report_file_name = 'LORA_report_' + str(datetime.now().strftime('%Y_%m_%d_%H_%M_%S')) + '.zip'
 
     return dcc.send_bytes(write_archive, LORA_report_file_name)
-
 
 @app.server.after_request
 def apply_sec_rules(response):
