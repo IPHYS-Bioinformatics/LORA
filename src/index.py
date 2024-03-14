@@ -87,7 +87,7 @@ app.index_string = '''<!DOCTYPE html>
 	  gtag('js', new Date());
 	
 	  gtag('config', 'G-LQQRFEVR5E');
-	</script>
+    </script>
 
     {%metas%}
     <title>{%title%}</title>
