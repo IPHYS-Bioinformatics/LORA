@@ -61,6 +61,7 @@ def plotly_upset_plot_pivot(df, limit):
     for i in range(1, d + 1):
         subsets = subsets + [list(x) for x in list(itertools.combinations(df_header_list, i))]
     subset_sizes = []
+
     for s in subsets:
         inter = []
         for term in s:
@@ -71,9 +72,10 @@ def plotly_upset_plot_pivot(df, limit):
             exter.append(dict_of_dict[term])
 
         tmp = dict_intersect_multi(inter, exter)
+
         subset_sizes.append(len(tmp))
                    
-    plot_df = pd.DataFrame({'Intersection': subsets, 'Size':subset_sizes,'Counts':'1','Values':subsets})        
+    plot_df = pd.DataFrame({'Intersection': subsets, 'Size':subset_sizes,'Counts':'1','Values':subsets})  ### delete lipids
    
     for index, row in plot_df.iterrows():
         temp_row = row['Intersection']
@@ -99,11 +101,19 @@ def plotly_upset_plot_pivot(df, limit):
     
     for index, list_in_row in selected_overlap.items():
         search_list = list(list_in_row)
-        full_list = list(df.columns)
+        full_list = list(df.columns) 
         temp_s = set(search_list)
         difference = [x for x in full_list if x not in temp_s]
         temp_df = df_with_names
-        final_df = temp_df[(temp_df[[c for c, t in zip(temp_df.columns.intersection(search_list), temp_df.dtypes) if pd.api.types.is_float_dtype(t)]]<=limit).all(axis=1) & (temp_df[[c for c, t in zip(temp_df.columns.intersection(difference), temp_df.dtypes) if pd.api.types.is_float_dtype(t)]]>=limit).all(axis=1)]
+        
+        float_columns_search = [c for c in temp_df.columns.intersection(search_list) if pd.api.types.is_float_dtype(temp_df[c].dtype)]
+        float_columns_difference = [c for c in temp_df.columns.intersection(difference) if pd.api.types.is_float_dtype(temp_df[c].dtype)]
+
+        mask_search = (temp_df[float_columns_search] <= limit).all(axis=1)
+        mask_difference = (temp_df[float_columns_difference] >= limit).all(axis=1)
+
+        final_df = temp_df[mask_search & mask_difference]
+
         temp_melted = final_df.melt(id_vars=['Names'], value_vars=list(list_in_row))
         if(final_df.empty):
             plot_df.at[index, 'Values']= []
